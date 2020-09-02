@@ -1,4 +1,4 @@
-package blackjsrc;
+package src;
 
 import java.util.Scanner;
 
@@ -6,8 +6,9 @@ public class blackjack {
 		public static void main(String[] args) {
 	     Scanner input = new Scanner(System.in);
 	    String HIT;
+	     //int HIT;
 	    String STAND;
-	    String  count = null;
+	    String count = null;
 	    String Continue = "y";
        int playerscard1;
        int  playerscard2; 
@@ -61,8 +62,11 @@ public class blackjack {
           
 
            System.out.print("Another Card (y/n)?: ");
+          
+           try {
+           
            HIT = input.nextLine();
-
+    
            while(HIT == "y")
            {
                nextcard = (int)(Math.random()*10 + 1);;
@@ -96,9 +100,19 @@ public class blackjack {
                   
                }
 
-
            }
-       }
-       
+      
+           }
+    	   catch (NumberFormatException e) {
+    		   System.out.print("Please enter a number.");
+    		   
+    	   }
+           
+           
+           
+           }
+           
+     
+	}
+		
 }
-   }
