@@ -1,6 +1,17 @@
 package src;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+
+enum Suit
+{
+	SPADES, HEARTS, DIAMOND, CLUB;  
+}
+
+enum Rank
+{
+	ACE, DUECE, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING;
+}
 
 public class blackjack {
 		public static void main(String[] args) {
@@ -10,8 +21,11 @@ public class blackjack {
 	    String STAND;
 	    String count = null;
 	    String Continue = "y";
+	    
+	    ArrayList<Card> deckList = new ArrayList<Card>();
+	    
        int playerscard1;
-       int  playerscard2; 
+       int playerscard2; 
        int dealersCard1; 
        int dealersCard2; 
        int nextcard;
@@ -21,13 +35,22 @@ public class blackjack {
 
        int[] deck = new int[52];
 		
-		String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
-	    String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9",
+		String[] suit = {"Spades", "Hearts", "Diamonds", "Clubs"};
+	    String[] rank = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9",
 	      "10", "Jack", "Queen", "King"};
 	        
 	    // Initialize cards
-	    for (int i = 0; i < deck.length; i++)
-	      deck[i] = i;
+	    //for (int i = 0; i < deck.length; i++)
+	      //deck[i] = i;
+	    
+	    for(int i = 0; i < rank.length; i++) {
+	    	for(int j = 0; j < suit.length; j++) {
+	    		Card card = new Card(rank[i], suit[j]);
+	    		deckList.add(card);
+	    		
+	    	}
+	    }
+	    		
 	    
 	    // Shuffle the cards
 	    for (int i = 0; i < deck.length; i++) {
@@ -69,7 +92,7 @@ public class blackjack {
     
            while(HIT == "y")
            {
-               nextcard = (int)(Math.random()*10 + 1);;
+               nextcard = (int)(Math.random()*10 + 1);
                playersCardTotal += nextcard;
                System.out.println("Card: " + nextcard);
                System.out.println("Total: " + playersCardTotal);
@@ -115,4 +138,24 @@ public class blackjack {
      
 	}
 		
+}
+
+class Card{
+	
+	private String rankCard;
+	private String suitCard;
+	
+	Card(String rank, String suit){
+		this.rankCard = rank;
+		this.suitCard = suit;
+	}
+	
+	String getRank() {
+		return rankCard;
+	}
+	
+	String getSuit() {
+		return suitCard;
+	}
+	
 }
