@@ -1,17 +1,17 @@
 package src;
 
 import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.Random;
 
 enum Suit
 {
 	SPADES, HEARTS, DIAMOND, CLUB;  
 }
 
-enum Rank
-{
-	ACE, DUECE, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING;
-}
+//enum Rank
+//{
+//	ACE, DUECE, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING;
+//}
 
 public class blackjack {
 		public static void main(String[] args) {
@@ -22,7 +22,6 @@ public class blackjack {
 	    String count = null;
 	    String Continue = "y";
 	    
-	    ArrayList<Card> deckList = new ArrayList<Card>();
 	    
        int playerscard1;
        int playerscard2; 
@@ -43,13 +42,7 @@ public class blackjack {
 	    //for (int i = 0; i < deck.length; i++)
 	      //deck[i] = i;
 	    
-	    for(int i = 0; i < rank.length; i++) {
-	    	for(int j = 0; j < suit.length; j++) {
-	    		Card card = new Card(rank[i], suit[j]);
-	    		deckList.add(card);
-	    		
-	    	}
-	    }
+	   
 	    		
 	    
 	    // Shuffle the cards
@@ -142,20 +135,96 @@ public class blackjack {
 
 class Card{
 	
-	private String rankCard;
-	private String suitCard;
+	private final int rankCard;
+	private final Suit suitCard;
 	
-	Card(String rank, String suit){
+	Card(Suit suit, int rank){
 		this.rankCard = rank;
 		this.suitCard = suit;
 	}
 	
-	String getRank() {
+	int getRank() {
 		return rankCard;
 	}
 	
-	String getSuit() {
+	Suit getSuit() {
 		return suitCard;
 	}
+	
+	public String toString() {
+		String numString = "Error";
+		
+		switch(this.rankCard) {
+		
+		case 2:
+			numString = "Two";
+			break;
+		case 3:
+			numString = "Three";
+			break;
+		case 4:
+			numString = "Four";
+			break;
+		case 5:
+			numString = "Five";
+			break;
+		case 6:
+			numString = "Six";
+			break;	
+		case 7:
+			numString = "Seven";
+			break;
+		case 8:
+			numString = "Eight";
+			break;	
+		case 9:
+			numString = "Nine";
+			break;
+		case 10:
+			numString = "Ten";
+			break;
+		case 11:
+			numString = "Jack";
+			break;
+		case 12:
+			numString = "Queen";
+			break;
+		case 13:
+			numString = "King";
+			break;
+		case 1:
+			numString = "Ace";
+			break;
+		default:
+			numString = "Error";
+			break;	
+				
+		}
+		
+	return numString + " of " + suitCard.toString();
+	}	
+}
+
+class Deck{
+	
+	private Card[] myCards;
+	private int numCards;
+	
+	Deck(int numDecks, boolean shuffle){
+		this.numCards = numDecks * 52;
+		this.myCards = new Card[this.numCards];
+		
+		int c = 0;
+		 for(int i = 0; i < numDecks; i++) {
+		    	for(int j = 0; j < 4; j++) {
+		    		for (int k = 0; k <= 13; k++) {
+		    		this.myCards[c] = new Card(Suit.values()[j], k);
+		    		}
+		    	}
+		    }
+		
+		
+	}
+	
 	
 }
